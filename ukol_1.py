@@ -28,42 +28,46 @@ TEXTS = [
     garpike and stingray are also present.'''
 ]
 
+
+
 user_name = input("username: ")
 password = input("password: ")
+
+print(30 * "-")
+
 registered = {"bob": 123, "ann": "pass123", "mike": "password123", "liz": "pass123"}
-line = 35 * "-"
-number_of_texts = len(TEXTS)
 
-print(line)
 
-if user_name in registered and password == str(registered[user_name]):
-    print(f"Welcome to the app, {user_name}! \nWe have {number_of_texts} texts to be analyzed.")
+if user_name in registered and str(password) == str(registered[user_name]):
+    print(f"Welcome to the app, {user_name}! \nWe have {len(TEXTS)} texts to be analyzed.")
 else:
     print(f"Nejsi registrovaný.")
     exit()
 
-print(line)
+print(30 * "-")
 
-text_number = input(f"Enter a number btw. 1 and {number_of_texts} to select: ")
-text_number_int = int(text_number)
+text_number = input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")
 
 if text_number.isdigit():
-    if text_number_int not in range(1,number_of_texts+1):
+    if int(text_number) not in range(1,len(TEXTS)+1):
         print("Takové číslo textů nemáme.")
         exit()
 else:
     print("Tohle není číslo")
     exit()
 
+
+cislo_textu = int(text_number)
+
+print("There are", len(TEXTS[cislo_textu-1].split()), "words in the selected text.")
+
+words = TEXTS[cislo_textu-1].split()
 titlecase = 0
 uppercase = 0
 lowercase = 0
 numeric = 0
 count = 0
-word_lengths_dict = {}
-words = TEXTS[text_number_int-1].split()
-
-print("There are", len(words), "words in the selected text.")
+delka_slov = {}
 
 for word in words:
     clean_word = word.strip(string.punctuation)
@@ -77,18 +81,18 @@ for word in words:
         numeric += 1
         count += int(clean_word)
     word_length = len(clean_word)
-    word_lengths_dict[word_length] = word_lengths_dict.get(word_length, 0) + 1
+    delka_slov[word_length] = delka_slov.get(word_length, 0) + 1
 
 print("There are", titlecase, "titlecase words.")
 print("There are", uppercase, "uppercase words.")
 print("There are", lowercase, "lowercase words.")
 print("There are", numeric, "numeric strings.")
 print("The sum of all the numbers: ", count)
-print(line)
-print(f"{'LEN':<3} | {"OCCURRENCES":<19} | {"NR.":>3}")
-print(line)
+print(35 * "-")
+print(f"{"LEN":<3} | {"OCCURRENCES":<19} | {"NR.":>3}")
+print(35 * "-")
+sorted_delka_slov = dict(sorted(delka_slov.items()))
 
-sorted_word_lengths_dict = dict(sorted(word_lengths_dict.items()))
+for klic, hodnota in sorted_delka_slov.items():
+    print(f"{klic:<3} | {"*"*hodnota:<19} | {hodnota:>3}")
 
-for key, value in sorted_word_lengths_dict.items():
-    print(f"{key:<3} | {'*'*value:<19} | {value:>3}")

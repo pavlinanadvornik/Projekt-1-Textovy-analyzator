@@ -1,0 +1,211 @@
+import pprint
+import math
+import random
+import sys
+import os
+import datetime
+import collections
+import itertools
+
+
+print("------------------------------------------ POUŽÍVÁNÍ KNIHOVEN ")
+udaje_uzivatele = {
+    "jmeno": "Matous",
+    "prijmeni": "Holinka",
+    "email": "matous@matous.cz",
+    "adresa": "Kocourkov, U Potoka 28"
+}
+
+pprint.pprint({"klic": "hodnota"})
+pprint.pprint(udaje_uzivatele)
+
+print(math.sqrt(4))
+
+print("------------------------------------------ vypíše 10 random čísel ")
+
+for i in range(10):
+    print(i+1, ":", random.randint(1,6))
+
+print("------------------------------------------ random.seed --> dostanu pokaždé stejnou posloupnost náhodných čísel ")
+
+random.seed(1)
+for u in range(10):
+    print(u+1, ":", random.randint(1,6))
+
+
+print("------------------------------------------ sys ")
+
+print(sys.platform)   #vrátí info o operačním systému
+print(sys.path)   #ukáže cestu
+print(os.getcwd())  #řekne, kde se python spouští
+print(os.listdir())  #vypíše všechny soubory, na které python vidí
+
+
+print("------------------------------------------ datetime ")
+
+print(datetime.datetime.now())
+
+print("------------------------------------------ modul math ")
+
+print(math.pi)
+print(math.sin(0.2))
+print(math.pow(3, 2))
+
+
+print("------------------------------------------ modul collections ")
+
+pocitadlo = collections.Counter("absdeabsdabcaba")
+print(pocitadlo.most_common(3))
+
+deq = collections.deque([1, 2, 3, 4, 5]) # vypadá jako list, ale jde do něj vložit/smazat něco i z levé strany (v listu jen z pravé)
+print(deq)
+
+deq.append(5)
+print(deq)
+
+deq.appendleft(3)
+print(deq)
+
+print("------------------------------------------ modul itertools ")
+
+colors = itertools.cycle(["red", "green", "blue"])
+for o in range(10):
+    print(next(colors))
+
+
+for pair in zip([1,2], ["a", "b"], [1,2]):
+    print(pair)
+
+print("----------- spojí každý s každým")
+for pair in itertools.product([1, 2], ['a', 'b']):
+    print(pair)
+
+print("----------- vezme x prvků z kolekce hodnot")
+for p in itertools.permutations([1, 2, 3, 4], 2):
+    print(p)
+
+print("----------- neřeší pořadí ")
+for c in itertools.combinations([1, 2, 3, 4], 2):
+    print(c)
+
+print("----------- zápis ")
+
+from collections import Counter #jiný druh zápisu
+print(Counter) #aby to tady nebylo moc dlouhé
+
+from math import sin, cos
+print(sin(1.0))
+
+print("------ tohle takhle nepoužívat!!!! je to nečitelné! ")
+from sys import *
+from math import *
+
+print("----------------------------------------------- jednodušší zápis - ať pak nemusím opakovat celé slovo při každém použití")
+from string import punctuation as p
+print(p)
+
+from math import pow, pi
+plochy = []
+polomery = (1, 2, 3, 4, 5)
+
+for r in polomery:
+    plochy.append(pow(r, 2) * pi)
+
+print(plochy)
+
+print("--------------------- zápis pomocí list comprehension ")
+plochy = [pow(r,2) * pi for r in polomery]
+print(plochy)
+
+print("------------------------------ cvičení ")
+print()
+import random
+import statistics
+
+print("--------------------------------------------------------1) vybere 10 náhodných čísel ")
+#for c in range(10):
+#    print(random.randint(0, 1000))
+
+deset_nahodnych = [random.randint(0,1000) for _ in range(10)]
+print(deset_nahodnych)
+
+
+print(random.choices(range(0, 1001), k=10)) #chci vybrat 10 prvků 
+
+
+print("-------------------------------------------------------- 3) 10 náhodných celých čísel ")
+nahodna_cisla = [random.randint(0, 10000) for _ in range(10)]
+print(nahodna_cisla)
+
+
+print("--------------------------------------------------------- 4) průměrná hodnota ")
+prumer = statistics.mean(nahodna_cisla)
+print(prumer)
+
+
+
+print("--------------------------------------------------------- knihovna = moduly a balíčky; BALÍČKY sbírka několika modulů (modul je samotný soubor s příponou .py) ")
+
+import string
+
+print(string.octdigits)
+
+import decimal
+
+import math
+
+# funkce "floor" zaokrouhluje na celé nižší číslo
+print(math.floor(1.234))
+
+
+import pomocne
+print(pomocne.var_2)
+
+from mesta import mesta_cr
+print(mesta_cr)
+
+print("------------------------- help")
+# print(help(math))
+
+print("---------------------------- jaké objekty modul obsahuje? ")
+print(dir(math))
+
+
+
+print("----------------------------------------------------------------- Závěrečný úkol Lekce 6")
+
+
+import random                  # mohla jsem použít i ranodm.choice
+
+moznosti = ['kamen', 'nuzky', 'papir']
+hrac_volby = list()
+pocitac_volby = list()
+
+while len(hrac_volby) != 3 and len(pocitac_volby) != 3:
+    volba_hrac = random.randint(0,2)
+    hrac_volby.append(moznosti[volba_hrac])
+
+    volba_pocitac = random.randint(0,2)
+    pocitac_volby.append(moznosti[volba_pocitac])
+
+    #print(hrac_volby, pocitac_volby)
+
+for x in range(3):
+    if hrac_volby[x] == pocitac_volby[x]:
+        vysledek = "Remíza!"
+    elif hrac_volby[x] == "kamen" and pocitac_volby[x] == "nuzky" or hrac_volby[x] == "nuzky" and pocitac_volby[x] == "papir" or hrac_volby[x] == "papir" and pocitac_volby[x] == "kamen" :
+        vysledek = "Vyhrává hráč!"
+    else:
+        vysledek = "Vyhrává počítač!"
+
+    print(f"Výsledek: {vysledek}")
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+SLOVNÍKY
+
+clear	odstraní všechny údaje ze slovníku
+•
+copy	vrátí kopii slovníku
+•
+fromkeys	vrátí slovník z předepsaných klíčů a hodnot
+•
+get	vrátí hodnotu, pokud existuje zadaný klíč
+•
+items	vrátí objekt obsahující tuple za každý pár (klíč a hodnotu)
+•
+keys	vrátí objekt obsahující všechny klíče slovníku
+•
+pop	pomocí zadaného jména klíče odstraň tento klíč a jeho hodnotu
+•
+popitem	odstraň poslední přidaný klíč a jeho hodnotu
+•
+setdefault	vrátí hodnotu zadaného klíče, pokud neexistuje vytvoří jej
+•
+update	aktualizuje slovník s novými páry (klíče i hodnoty)
+•
+values	vrátí objekt obsahující všechny hodnoty
